@@ -1,0 +1,10 @@
+
+txt_sentoken/pos/
+
+txt_sentoken/neg/
+
+\.idea/
+
+processed_neg
+
+processed_pos
