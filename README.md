@@ -4,3 +4,4 @@ nltk
 tensorflow
 keras
 numpy
+gensim
