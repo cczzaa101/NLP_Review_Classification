@@ -21,15 +21,15 @@ def splitForValidation(slice):
             trainingLabels.append( labels[ind] )
     return (trainingFeatures, trainingLabels), (testingFeatures,testingLabels)
 
-(trainingSet, trainingLabels), (testingSet, testingLabels) = splitForValidation(1)
+(trainingSet, trainingLabels), (testingSet, testingLabels) = splitForValidation(3)
 
 model = Sequential()
-model.add( Dense(128, input_dim = len(features[0]), activation= 'relu' ) )
-model.add(Dropout(0.5))
-model.add( Dense(128, input_dim = len(features[0]), activation= 'relu' ) )
-model.add(Dropout(0.5))
+model.add( Dense( 128, input_dim = len(features[0]), activation= 'relu' ) )
+model.add(Dropout(0.3))
+model.add( Dense( 128, input_dim = len(features[0]), activation= 'relu' ) )
+model.add(Dropout(0.3))
 model.add( Dense(1, activation= 'sigmoid' ) )
-model.compile(optimizer= Adam(0.00005),metrics=['accuracy'], loss='binary_crossentropy')
+model.compile(optimizer= Adam(0.0001),metrics=['accuracy'], loss='binary_crossentropy')
 
 model.fit( np.array(trainingSet), np.array(trainingLabels), epochs = 2000, batch_size= 100 )
 

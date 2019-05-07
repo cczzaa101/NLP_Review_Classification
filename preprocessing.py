@@ -2,6 +2,8 @@ import os
 import nltk
 import json
 import numpy as np
+import random
+random.seed()
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.corpus import sentiwordnet as swn
@@ -146,6 +148,13 @@ neg_features, neg_labels = generateTrainingData(negativeText, negativePos, False
 
 features = np.array( pos_features + neg_features )
 labels = np.array( pos_labels + neg_labels )
+index = [i for i in range(len(features))]
+random.shuffle(index)
+shuffledFeatures = []
+shuffledLabels = []
+for ind in index:
+    shuffledFeatures.append( features[ind] )
+    shuffledLabels.append( labels[ind] )
 
-np.save('features.npy', features)
-np.save('labels.npy', labels)
+np.save('features.npy', shuffledFeatures)
+np.save('labels.npy', shuffledLabels)
